@@ -35,6 +35,9 @@ fun Application.main() {
         templateLoader = ClassTemplateLoader(Application::class.java.classLoader, "templates")
     }
     install(Routing) {
+        get("/merkeregister/innsyn/") {
+            call.respond(FreeMarkerContent("frontpage.ftl", {}))
+        }
         get("/merkeregister/innsyn/Merkedetaljer.aspx") {
             val markId: Int = call.request.queryParameters.get("merkenr").orEmpty().toInt()
             when (markId) {
